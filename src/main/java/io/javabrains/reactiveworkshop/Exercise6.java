@@ -13,7 +13,7 @@ public class Exercise6 {
 
         // Get the value from the Mono into a String variable but give up after 5 seconds
         // TODO: Write code here
-        String s = String.valueOf(ReactiveSources.intNumberMono().block(Duration.ofSeconds(5)));
+//        String s = ReactiveSources.unresponsiveMono().block(Duration.ofSeconds(5));
 
         // Get the value from unresponsiveFlux into a String list but give up after 5 seconds
         // Come back and do this when you've learnt about operators!
@@ -22,8 +22,12 @@ public class Exercise6 {
 //        String a = ReactiveSources.stringNumbersFlux().blockLast(Duration.ofSeconds(5));
 //        System.out.println(a);
 
-        List<String> sList = ReactiveSources.stringNumbersFlux().buffer().blockLast(Duration.ofSeconds(5));
-        System.out.println(sList);
+        List<String> l = ReactiveSources
+                .unresponsiveFlux()
+                .collectList()
+                .block(Duration.ofSeconds(5));
+
+        System.out.println(l);
 
         System.out.println("Press a key to end");
         System.in.read();
