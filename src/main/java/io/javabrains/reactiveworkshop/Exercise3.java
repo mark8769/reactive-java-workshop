@@ -19,7 +19,11 @@ public class Exercise3 {
         // This line will take 10 seconds, since FLUX is emitting one element every second.
         // Blocking operation ... (making the list) -> Have to wait for list to be allocated...
         // E.g. program will stop here before continuing
-        List<Integer> nums = ReactiveSources.intNumbersFlux().toStream().toList();
+        List<Integer> nums = ReactiveSources
+                .intNumbersFlux()
+                .log()
+                .toStream()
+                .toList();
 
         // These next lines won't execute until nums is allocated... (10 seconds)
         System.out.println("Size: " + nums.size());

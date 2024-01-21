@@ -1,6 +1,8 @@
 package io.javabrains.reactiveworkshop;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
 
 public class Exercise6 {
 
@@ -11,10 +13,17 @@ public class Exercise6 {
 
         // Get the value from the Mono into a String variable but give up after 5 seconds
         // TODO: Write code here
+        String s = String.valueOf(ReactiveSources.intNumberMono().block(Duration.ofSeconds(5)));
 
         // Get the value from unresponsiveFlux into a String list but give up after 5 seconds
         // Come back and do this when you've learnt about operators!
         // TODO: Write code here
+        // javadoc.io/doc/io.projectreactor/reactor-core/latest/reactor/core/publisher/Flux.html#blockLast
+//        String a = ReactiveSources.stringNumbersFlux().blockLast(Duration.ofSeconds(5));
+//        System.out.println(a);
+
+        List<String> sList = ReactiveSources.stringNumbersFlux().buffer().blockLast(Duration.ofSeconds(5));
+        System.out.println(sList);
 
         System.out.println("Press a key to end");
         System.in.read();
