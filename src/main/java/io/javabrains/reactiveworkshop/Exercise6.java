@@ -27,6 +27,7 @@ public class Exercise6 {
                 .collectList()
                 .block(Duration.ofSeconds(5));
 
+        
         System.out.println(l);
 
         System.out.println("Press a key to end");
